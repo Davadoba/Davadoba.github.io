@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aditya Davanam</title>
+  <meta name="description" content="Aditya Davanam is a computer science student at UC San Diego who builds data and AI systems for research labs, sports teams and startups.">
+  <meta name="theme-color" content="#EEF2F7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1A2E" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://davadoba.github.io/">
+  <meta property="og:url" content="https://davadoba.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aditya Davanam">
+  <meta property="og:description" content="CS at UC San Diego. I build data and AI systems people can trust and understand.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314213D'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23F26B1D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,500..900&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,1&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    /* Two colours (navy ink, paper) and one accent (court orange). */
+    :root {
+      --paper: #EEF2F7;
+      --surface: #FFFFFF;
+      --ink: #14213D;
+      --muted: #4A5878;
+      --rule: #CDD5E1;
+      --accent: #F26B1D;
+      --accent-text: #B5430A;
+      --on-ink: #FFFFFF;
+      --shadow: 0 10px 24px -14px rgba(20, 33, 61, .45);
+
+      --tile-court: #F9DCC8;
+      --tile-court-line: rgba(20, 33, 61, .38);
+      --tile-monitor: #14213D;
+      --tile-monitor-grid: #24365C;
+      --tile-paper: #D9E1EC;
+      --tile-map: #FFFFFF;
+      --tier0: #DCE3EE; --tier1: #A7B6CD; --tier2: #F6A673; --tier3: #F26B1D;
+
+      --sans: "Big Shoulders", "Arial Narrow", system-ui, sans-serif;
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --gutter: clamp(16px, 4vw, 40px);
+      --max: 1360px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0F1A2E;
+        --surface: #16243D;
+        --ink: #EEF2F7;
+        --muted: #A9B6CB;
+        --rule: #2A3B5E;
+        --accent: #FF8A3D;
+        --accent-text: #FFA265;
+        --on-ink: #0F1A2E;
+        --shadow: 0 10px 24px -12px rgba(0, 0, 0, .7);
+
+        --tile-court: #3B2B22;
+        --tile-court-line: rgba(238, 242, 247, .32);
+        --tile-monitor: #0A1222;
+        --tile-monitor-grid: #1C2B49;
+        --tile-paper: #22324F;
+        --tile-map: #1B2A45;
+        --tier0: #2A3B5E; --tier1: #4C6189; --tier2: #C46A35; --tier3: #FF8A3D;
+        color-scheme: dark;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 1.125rem; line-height: 1.6; font-optical-sizing: auto; }
+    p, li, dd { text-wrap: pretty; }
+    h1, h2, h3 { text-wrap: balance; }
+    ::selection { background: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--ink); }
+    input, textarea { caret-color: var(--accent); }
+    h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+    svg { display: block; }
+
+    a { color: inherit; text-decoration-line: underline; text-decoration-thickness: 1.5px; text-underline-offset: .2em; text-decoration-color: var(--accent); }
+    a:hover { color: var(--accent-text); }
+    :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    .skip { position: absolute; left: var(--gutter); top: -100px; z-index: 30; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 6px; font-family: var(--sans); text-decoration: none; }
+    .skip:focus { top: 10px; }
+    .wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+
+    /* UI type */
+    .ui, .site-header, .btn, .tag, .meta, .facts dt, .stack, h2, h3, .when, .skills th, details summary { font-family: var(--sans); }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+    .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 0 20px; flex-wrap: wrap; min-height: 60px; }
+    .brand { font-family: "Fraunces", var(--serif); font-weight: 600; font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; font-size: 1.5rem; letter-spacing: -.01em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
+    .brand:hover { color: var(--ink); }
+    .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+    .nav ul { display: flex; flex-wrap: wrap; align-items: center; gap: 0 2px; margin-inline-end: -8px; }
+    .nav a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 8px; text-decoration: none; font-weight: 600; font-size: 1.125rem; letter-spacing: .02em; color: var(--muted); }
+    .nav a:hover { color: var(--ink); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 6px; font-weight: 700; font-size: 1.125rem; letter-spacing: .03em; text-decoration: none; border: 1.5px solid var(--ink); transition: transform .12s ease, background-color .15s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-solid { background: var(--ink); color: var(--on-ink); }
+    .btn-solid:hover { color: var(--on-ink); }
+    .btn-line { color: var(--ink); }
+    .btn-line:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+
+    /* Hero */
+    .hero { padding-block: clamp(36px, 6vw, 64px) clamp(40px, 6vw, 64px); }
+    .hero .wrap { display: grid; gap: 40px; align-items: center; }
+    @media (min-width: 960px) { .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; } }
+    .hero h1 { font-family: "Fraunces", var(--serif); font-weight: 600; font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; font-size: clamp(3rem, 6vw, 5.25rem); line-height: .98; letter-spacing: -.01em; }
+    .nameplate { width: fit-content; max-width: 100%; }
+    .lede { margin-top: 20px; font-style: italic; font-size: clamp(1.375rem, 2.4vw, 1.75rem); line-height: 1.3; contain: inline-size; text-wrap: balance; }
+    .facts { margin-top: 24px; border-top: 1px solid var(--rule); }
+    .facts div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); align-items: baseline; gap: 12px; padding-block: 9px; border-bottom: 1px solid var(--rule); }
+    .facts dt { font-size: 1.0625rem; font-weight: 700; letter-spacing: .02em; color: var(--muted); }
+    .facts dd { font-size: 1.0625rem; line-height: 1.45; }
+    .actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+    .text-links { display: flex; gap: 0 16px; }
+    .text-links a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--sans); font-weight: 700; font-size: 1.1875rem; letter-spacing: .02em; }
+
+    /* Board: a static mix of work and interests next to the name */
+    .board { display: grid; gap: 20px; }
+    .board-row { display: grid; gap: 16px; align-items: start; }
+    @media (min-width: 561px) { .r2 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+    .piece figcaption { margin-top: 7px; font-family: var(--sans); font-size: 1rem; font-weight: 600; letter-spacing: .02em; line-height: 1.35; color: var(--muted); }
+    .play img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 10px; background: #FFFFFF; }
+    .albums { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+    .albums img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 4px; }
+    .anime { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .anime img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 4px; }
+    @media (max-width: 560px) { .anime { grid-template-columns: repeat(3, 72px); } }
+    /* Sections */
+    main > section:not(.hero) { padding-block: clamp(40px, 6vw, 64px); border-top: 1px solid var(--rule); scroll-margin-top: 60px; }
+    h2 { font-weight: 900; font-size: clamp(2.25rem, 4vw, 3rem); letter-spacing: .005em; line-height: .95; text-transform: uppercase; margin-bottom: 20px; }
+    .cols { display: grid; gap: 32px 56px; }
+    @media (min-width: 860px) { .cols { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+    .prose p + p { margin-top: .9em; }
+    .prose { max-width: 66ch; }
+    .meta { color: var(--muted); font-size: 1rem; font-weight: 600; letter-spacing: .02em; }
+    h3.small { font-size: 1.375rem; font-weight: 800; letter-spacing: .01em; margin-bottom: 10px; }
+
+    .rows li { padding-block: 10px; border-top: 1px solid var(--rule); display: grid; gap: 0 16px; }
+    .rows li:last-child { border-bottom: 1px solid var(--rule); }
+    .rows .what { font-size: 1.0625rem; line-height: 1.45; }
+    .rows .meta { margin-top: 2px; }
+
+    /* Work */
+    .work-grid { display: grid; gap: 16px; }
+    @media (min-width: 820px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 20px 22px 16px; display: flex; flex-direction: column; scroll-margin-top: 76px; }
+    .card h3 { font-size: 1.875rem; font-weight: 800; letter-spacing: .005em; line-height: 1.05; margin-top: 4px; }
+    .card .sum { margin-top: 8px; }
+    .card ul.hl { margin-top: 10px; display: grid; gap: 6px; }
+    .card ul.hl li { position: relative; padding-left: 18px; font-size: 1.0625rem; line-height: 1.45; }
+    .card ul.hl li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .card .foot { margin-top: auto; padding-top: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; }
+    .stack { color: var(--muted); font-size: 1rem; font-weight: 600; letter-spacing: .02em; }
+    .card .links { display: flex; flex-wrap: wrap; gap: 0 14px; }
+    .card .links a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--sans); font-weight: 700; font-size: 1.0625rem; letter-spacing: .02em; }
+    details { margin-top: 12px; border-top: 1px dashed var(--rule); }
+    details summary { cursor: pointer; display: flex; align-items: center; min-height: 44px; font-weight: 700; font-size: 1.0625rem; letter-spacing: .02em; color: var(--accent-text); list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: "+"; display: inline-block; width: 1.1em; font-weight: 700; }
+    details[open] summary::before { content: "\2212"; }
+    details .prose { padding-bottom: 6px; font-size: 1.0625rem; }
+
+    .minor { margin-top: 16px; display: grid; gap: 12px; }
+    @media (min-width: 640px) { .minor { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1020px) { .minor { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .minor li { border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; scroll-margin-top: 76px; }
+    .minor .status { font-family: var(--sans); font-size: .9375rem; font-weight: 700; letter-spacing: .03em; color: var(--accent-text); }
+    .minor strong { display: block; font-family: var(--sans); font-weight: 800; font-size: 1.375rem; line-height: 1.1; margin-top: 2px; }
+    .minor p { font-size: 1rem; line-height: 1.45; color: var(--muted); margin-top: 4px; }
+
+    /* Experience */
+    .timeline li { grid-template-columns: 1fr; align-items: baseline; }
+    @media (min-width: 560px) { .timeline li { grid-template-columns: 8.5rem minmax(0, 1fr); } }
+    .when { font-size: 1rem; font-weight: 700; letter-spacing: .02em; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .role { font-family: var(--sans); font-weight: 800; font-size: 1.3125rem; line-height: 1.15; }
+
+    /* Coursework */
+    h3.section-sub { font-weight: 900; font-size: clamp(1.75rem, 3vw, 2.25rem); letter-spacing: .005em; line-height: .95; text-transform: uppercase; margin: 40px 0 16px; }
+    .courses { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); column-gap: 24px; }
+    .courses li { padding-block: 9px; border-top: 1px solid var(--rule); }
+    .course { display: block; font-family: var(--sans); font-weight: 800; font-size: 1.1875rem; line-height: 1.15; }
+
+    /* Beyond the code */
+    .beyond-grid { margin-top: 20px; display: grid; gap: 12px; }
+    @media (min-width: 640px) { .beyond-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1020px) { .beyond-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .beyond-grid li { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 16px 18px; }
+    .beyond-grid h3 { font-size: 1.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 6px; }
+    .beyond-grid p { font-size: 1.0625rem; line-height: 1.45; }
+    /* Placeholder text to replace before publishing */
+    .todo { color: var(--accent-text); font-style: italic; }
+
+    /* Skills */
+    .skills { width: 100%; border-collapse: collapse; }
+    .skills th, .skills td { text-align: left; vertical-align: top; padding: 10px 0; border-top: 1px solid var(--rule); }
+    .skills th { width: 11rem; padding-right: 16px; font-size: 1.125rem; font-weight: 800; letter-spacing: .01em; }
+    .skills td { font-size: 1.0625rem; }
+    @media (max-width: 560px) { .skills th, .skills td { display: block; width: auto; } .skills td { border-top: 0; padding-top: 0; } }
+
+    /* Contact */
+    .contact .wrap { display: grid; gap: 16px 56px; align-items: end; }
+    @media (min-width: 860px) { .contact .wrap { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+    .mail { display: inline-block; margin-top: 6px; font-family: var(--sans); font-weight: 800; font-size: clamp(1.75rem, 4vw, 2.75rem); letter-spacing: .005em; overflow-wrap: anywhere; }
+    .contact .text-links { flex-wrap: wrap; }
+
+    footer { border-top: 1px solid var(--rule); padding-block: 20px 32px; color: var(--muted); font-family: var(--sans); font-size: 1rem; font-weight: 600; letter-spacing: .02em; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Aditya Davanam</a>
+      <nav class="nav" aria-label="Sections">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#beyond">Beyond</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="name">
+      <div class="wrap">
+        <div>
+          <div class="nameplate">
+            <h1 id="name">Aditya Davanam</h1>
+            <p class="lede">AI systems turning complex data into explainable & trustworthy insights.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Studying</dt><dd>B.S. Computer Science, UC San Diego</dd></div>
+            <div><dt>Graduating</dt><dd>June 2028</dd></div>
+            <div><dt>Research</dt><dd>Rady Behavioral Economics Lab • UCSD XR Lab</dd></div>
+            <div><dt>Previously</dt><dd>Software engineering intern at SYNK • CS tutor at UC Santa Cruz</dd></div>
+            <div><dt>Looking For</dt>SWE & MLE Internships For Summer 2027</div>
+          </dl>
+          <div class="actions">
+            <a class="btn btn-solid" href="#contact">Get in touch</a>
+            <a class="btn btn-line" href="resume.pdf">View resume</a>
+            <div class="text-links">
+              <a href="https://github.com/Davadoba">GitHub</a>
+              <a href="https://www.linkedin.com/in/aditya-dav/">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="board">
+          <figure class="piece">
+            <ul class="albums">
+              <li><img src="img/albums/mckinley-dixon-beloved-paradise-jazz.webp" alt="Beloved! Paradise! Jazz!? - McKinley Dixon" title="Beloved! Paradise! Jazz!? - McKinley Dixon" width="240" height="240"></li>
+              <li><img src="img/albums/tribe-thank-you-4-your-service.webp" alt="We Got It from Here… Thank You 4 Your Service - A Tribe Called Quest" title="We Got It from Here… Thank You 4 Your Service - A Tribe Called Quest" width="240" height="240"></li>
+              <li><img src="img/albums/westside-gunn-flygod.webp" alt="Flygod - Westside Gunn" title="Flygod - Westside Gunn" width="240" height="240"></li>
+              <li><img src="img/albums/common-be.webp" alt="Be - Common" title="Be - Common" width="240" height="240"></li>
+              <li><img src="img/albums/conway-god-dont-make-mistakes.webp" alt="God Don't Make Mistakes - Conway the Machine" title="God Don't Make Mistakes - Conway the Machine" width="240" height="240"></li>
+              <li><img src="img/albums/pharcyde-labcabincalifornia.webp" alt="Labcabincalifornia - The Pharcyde" title="Labcabincalifornia - The Pharcyde" width="240" height="240"></li>
+              <li><img src="img/albums/stove-god-reasonable-drought.webp" alt="Reasonable Drought - Stove God Cook$" title="Reasonable Drought - Stove God Cook$" width="240" height="240"></li>
+              <li><img src="img/albums/j-cole-the-fall-off.webp" alt="The Fall-Off - J. Cole" title="The Fall-Off - J. Cole" width="240" height="240"></li>
+              <li><img src="img/albums/jid-the-forever-story.webp" alt="The Forever Story - JID" title="The Forever Story - JID" width="240" height="240"></li>
+              <li><img src="img/albums/nujabes-luvsic-hexalogy.webp" alt="Luv(sic) Hexalogy - Nujabes &amp; Shing02" title="Luv(sic) Hexalogy - Nujabes &amp; Shing02" width="240" height="240"></li>
+            </ul>
+            <figcaption>Some Of My Favorite Albums</figcaption>
+          </figure>
+
+          <div class="board-row r2">
+            <figure class="piece play">
+              <img src="img/elevator-play.png" width="678" height="311" title="Elevator Play" alt="Two-frame diagram of the elevator play. Frame 1: 1 passes to 4, then cuts to the corner and screens for 3; 2 cuts around 4 to the opposite wing; 3 curls around 1's screen. Frame 2: 4 passes back to 1; 3 cuts up between an elevator screen set by 5 and 4 to catch the pass from 1.">
+              <figcaption>My favorite basketball set play</figcaption>
+            </figure>
+
+            <figure class="piece">
+              <ul class="anime">
+                <li><img src="img/anime/steins-gate.webp" alt="Steins;Gate" title="Steins;Gate" width="240" height="340"></li>
+                <li><img src="img/anime/fmab.webp" alt="Fullmetal Alchemist: Brotherhood" title="Fullmetal Alchemist: Brotherhood" width="240" height="338"></li>
+                <li><img src="img/anime/kaguya.webp" alt="Kaguya-sama: Love Is War" title="Kaguya-sama: Love Is War" width="240" height="360"></li>
+                <li><img src="img/anime/champloo.webp" alt="Samurai Champloo" title="Samurai Champloo" width="240" height="360"></li>
+                <li><img src="img/anime/code-geass.webp" alt="Code Geass: Lelouch of the Rebellion" title="Code Geass: Lelouch of the Rebellion" width="240" height="340"></li>
+                <li><img src="img/anime/rezero.webp" alt="Re:Zero − Starting Life in Another World" title="Re:Zero − Starting Life in Another World" width="240" height="340"></li>
+              </ul>
+              <figcaption>Some of my favorite anime</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <div class="wrap cols">
+        <div>
+          <h2 id="about-h">About</h2>
+          <div class="prose">
+            <p>I'm a Computer Science student at UC San Diego graduating in 2028 interested in machine learning, AI, and data-driven problem solving. I transferred from UC Santa Cruz and grew up in West Windsor, New Jersey.</p>
+            <p>I'm interested in exploring how we can apply these technology to real-world problems. At UCSD, I've had the opportunity to explore a range of domains, from analyzing physiological signals and studying human behavior to working with large datasets of meteorological data to using computer vision for sports analytics.</p>
+            <p>I'm still exploring where I'd like to specialize, but I love learning about new domains, understanding the problems within them, and figuring out how we can use computers to solve them. Ultimately, I'm interested in building systems that go beyond producing predictions or numbers to provide insights that people can actually use and trust.</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="small">Now, fall 2026</h3>
+          <ul class="rows">
+            <li><span class="what">Turning 25 years of economics research into evidence for the news</span><span class="meta">Rady Behavioral Economics Lab</span></li>
+            <li><span class="what">Making wearable heart-rate data trustworthy</span><span class="meta">UCSD XR Lab</span></li>
+            <li><span class="what">Disaster-risk scores for every U.S. county</span><span class="meta">DS3 Risk Resource</span></li>
+            <li><span class="what">Predicting NBA offseason trades</span><span class="meta">COGS 108</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="wrap cols">
+        <div>
+          <h2 id="exp-h">Experience</h2>
+          <ol class="rows timeline">
+            <li><span class="when">Oct 2026 – now</span><div><p class="role">Research Assistant, Rady Behavioral Economics Lab</p><p class="meta">UC San Diego</p></div></li>
+            <li><span class="when">Oct 2026 – now</span><div><p class="role">Research Assistant, XR Lab</p><p class="meta">UC San Diego</p></div></li>
+            <li><span class="when">Jan – Jun 2026</span><div><p class="role">Computer Science Tutor</p><p class="meta">UC Santa Cruz. 100+ students in C, algorithms, AI and networking</p></div></li>
+            <li><span class="when">Jan – Mar 2026</span><div><p class="role">Software Engineering Intern, SYNK</p><p class="meta">Kafka pipeline at 2,000+ events a minute, WebSocket sync for 200+ users, 28% fewer database calls</p></div></li>
+            <li><span class="when">2021 – 2024</span><div><p class="role">President, STEP For A Better World LEO Club</p><p class="meta">Grew the club from 20 to 58 members, ran 11 donation drives</p></div></li>
+          </ol>
+        </div>
+        <div>
+          <h2>Education</h2>
+          <ol class="rows timeline">
+            <li><span class="when">2026 – 2028</span><div><p class="role">B.S. Computer Science</p><p class="meta">UC San Diego, expected June 2028</p></div></li>
+            <li><span class="when">2024 – 2026</span><div><p class="role">Computer Science</p><p class="meta">UC Santa Cruz, transferred</p></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="wrap">
+          <h3 class="section-sub">Relevant coursework</h3>
+          <ul class="courses">
+            <li><span class="course">Online Database Analytics</span><span class="meta">CSE 135, UC San Diego</span></li>
+            <li><span class="course">LLM &amp; AI Agent Infrastructure</span><span class="meta">CSE 190, UC San Diego</span></li>
+            <li><span class="course">Data Science in Practice</span><span class="meta">COGS 108, UC San Diego</span></li>
+            <li><span class="course">Deep Learning</span><span class="meta">CSE 144, UC Santa Cruz</span></li>
+            <li><span class="course">Artificial Intelligence</span><span class="meta">CSE 140, UC Santa Cruz</span></li>
+            <li><span class="course">Data Structures &amp; Algorithms</span><span class="meta">CSE 101, UC Santa Cruz</span></li>
+            <li><span class="course">Computer Networks</span><span class="meta">CSE 150, UC Santa Cruz</span></li>
+            <li><span class="course">Full-Stack Web Development</span><span class="meta">CSE 186, UC Santa Cruz</span></li>
+            <li><span class="course">Computer System Design &amp; Advanced C</span><span class="meta">CSE 130, UC Santa Cruz</span></li>
+          </ul>
+      </div>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <h2 id="work-h">Current Work</h2>
+        <div class="work-grid">
+          <article class="card" id="risk-resource" aria-labelledby="rr-h">
+            <p class="meta">Data Science Student Society, fall 2026</p>
+            <h3 id="rr-h">Risk Resource</h3>
+            <p class="sum">Explainable natural-disaster risk scores for every U.S. state and county. I built the backend.</p>
+            <ul class="hl">
+              <li>FastAPI service scoring 3,221 counties from live NWS, USGS, NOAA and Open-Meteo feeds plus FEMA baselines</li>
+              <li>Stays up when government APIs don't: per-key caching, stale-data fallback, retry backoff</li>
+              <li>Lambda functions on an EventBridge schedule keep the weather data fresh</li>
+            </ul>
+            <details>
+              <summary>How it works</summary>
+              <div class="prose">
+                <p>Each hazard score is half long-term baseline and half live signal, kept apart so every score can be explained in plain language. The overall score weights the worst hazard most heavily, so a place with high flood risk doesn't look safe just because it never sees earthquakes. When a source fails, the API serves data up to an hour old and says it's stale, instead of quietly reporting "no alerts".</p>
+              </div>
+            </details>
+            <div class="foot">
+              <p class="stack">Python, FastAPI, Supabase, AWS Lambda, EventBridge</p>
+              <p class="links"><a href="https://risk-resource.vercel.app">Live site</a><a href="https://github.com/nathaniel-trueba/RiskResource">Code</a></p>
+            </div>
+          </article>
+
+          <article class="card" id="granny-green" aria-labelledby="gg-h">
+            <p class="meta">UCSD XR Lab, research assistant</p>
+            <h3 id="gg-h">Granny Green heart-rate study</h3>
+            <p class="sum">Making wearable heart-rate data trustworthy, and making the study platform faster and more natural for participants.</p>
+            <ul class="hl">
+              <li>Quality-control protocol that validates each window of PPG data against respiration, movement and published thresholds</li>
+              <li>Whisper speech recognition down to about 0.6s per response at roughly 93% accuracy in manual testing</li>
+              <li>Parser so participants can say "forty-two" instead of "four, two"</li>
+            </ul>
+            <details>
+              <summary>How it works</summary>
+              <div class="prose">
+                <p>Signals from an arm-worn sensor are easily corrupted by movement and breathing, and if bad windows slip through, every analysis after them inherits the error. The protocol flags bursts of movement, cross-checks breathing, and documents where it holds and where it doesn't, so the next research assistant can adapt it instead of starting over. On the platform side I also fixed words being read as the wrong language and wrote unit tests for the transcription module.</p>
+              </div>
+            </details>
+            <div class="foot">
+              <p class="stack">Python, Flask, Whisper, EmotiBit</p>
+              <p class="links"><a href="https://github.com/Davadoba/GrannyGreen_HRV_Data_Cleaning">Cleaning code</a><a href="https://github.com/xrlucsd/pilot_server">Platform</a></p>
+            </div>
+          </article>
+
+          <article class="card" id="overlap" aria-labelledby="ov-h">
+            <p class="meta">Rady Behavioral Economics Lab, research assistant</p>
+            <h3 id="ov-h">Project OVERLAP</h3>
+            <p class="sum">Pairing news about tariffs, AI and healthcare with the economics research that puts it in context.</p>
+            <ul class="hl">
+              <li>Evidence base built from every <cite>Journal of Economic Perspectives</cite> paper since 2000</li>
+              <li>LLM pipeline with Claude that turns each paper into claim cards: quote, claim, conditions, numbers, citation</li>
+              <li>Currently Investigating Independently: graph-based representations of claims, evidence, reasoning, etc. to create a more grounded and reliable representation of an academic corpus that AI agents can use.</li>
+            </ul>
+            <details>
+              <summary>Why claim cards</summary>
+              <div class="prose">
+                <p>When research does reach the news, the caveats usually get lost. Keeping each claim next to the conditions it holds under means a reader can see not just what a paper found, but when that finding applies.</p>
+              </div>
+            </details>
+            <div class="foot">
+              <p class="stack">Python, Claude API</p>
+            </div>
+          </article>
+
+          <article class="card" id="nba-trades" aria-labelledby="nba-h">
+            <p class="meta">COGS 108, UC San Diego, fall 2026</p>
+            <h3 id="nba-h">NBA trade prediction</h3>
+            <p class="sum">Can XGBoost tell who gets traded this offseason? I'm leading a group project to find out which player and team patterns predict a trade.</p>
+            <ul class="hl">
+              <li>One row per player, team and season for every player under contract from 2015–16 to 2025–26, merged from Basketball-Reference, ESPN, the NBA API and a Hugging Face dataset</li>
+              <li>Features cover the player (regular-season and playoff stats, 3-year trends, age), the team (seed, playoff runs, 5-year history) and the salary cap (cap share, years left, tax and apron status)</li>
+              <li>In progress: testing XGBoost against an 8% base-rate baseline on PR-AUC, with SHAP to show which features drive a trade</li>
+            </ul>
+            <details>
+              <summary>Why these choices</summary>
+              <div class="prose">
+                <p>Players on expiring contracts are left out, because they become free agents and are rarely traded in the offseason. Only about 8% of the remaining players get traded, so accuracy would reward a model that never predicts a trade. PR-AUC measures how well the model finds the players who actually do get moved, and the baseline gives every player the same 8% chance.</p>
+              </div>
+            </details>
+            <div class="foot">
+              <p class="stack">Python, XGBoost, pandas, SHAP</p>
+              <p class="links"><a href="https://github.com/COGS108/Group060_FA26">Code</a></p>
+            </div>
+          </article>
+        </div>
+
+        <ul class="minor" id="in-progress" aria-label="Smaller and in-progress projects">
+          <li id="study-chatbot"><span class="status">Personal project</span><strong>Study chatbot</strong><p>Serverless RAG chatbot over your own notes (Lambda, Bedrock, pgvector). Used by 8 to 10 classmates during exam season.</p></li>
+          <li><span class="status">Research phase</span><strong>Eclipse Analytics</strong><p>A play classifier and shot tracker requested by UCSD's men's and women's basketball coaches.</p></li>
+          <li><span class="status">Scoping</span><strong>o1Assist</strong><p>An AI CRM agent and website for a startup that helps people get O-1 visas, with CSES.</p></li>
+          <li><span class="status">Earlier</span><strong>Transfer Learning Image classification</strong><p>100 classes on EfficientNetV2 and Swin, 85% accuracy with MixUp and test-time augmentation. <a href="https://github.com/Davadoba/144FinalProject">Code</a></p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="wrap">
+        <h2 id="skills-h">Skills</h2>
+        <table class="skills">
+          <tbody>
+            <tr><th scope="row">Languages</th><td>Python, TypeScript, JavaScript, SQL, C/C++, Java</td></tr>
+            <tr><th scope="row">ML and data</th><td>PyTorch, XGBoost, pandas, LLM APIs, Whisper, retrieval-augmented generation, pgvector</td></tr>
+            <tr><th scope="row">Backend and web</th><td>FastAPI, Flask, Node.js, Express, React, Next.js, Kafka, WebSockets</td></tr>
+            <tr><th scope="row">Cloud and data stores</th><td>AWS (Lambda, EventBridge, S3, SQS, ECS, Bedrock), PostgreSQL, Supabase, Docker</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="beyond" aria-labelledby="beyond-h">
+      <div class="wrap">
+        <h2 id="beyond-h">Beyond the code</h2>
+        <div class="prose">
+          <p>Outside of CS, I'm usually watching basketball, anime, listening to music, or thinking about how data can help us understand the world better.</p>
+        </div>
+        <ul class="beyond-grid">
+          <li>
+            <h3>Basketball</h3>
+            <p>Knicks fan here. I'm into sports analytics and using data to evaluate players, teams, and the game itself.</p>
+            <p><br>Notice the color scheme of the page!</p>
+          </li>
+          <li>
+            <h3>Music</h3>
+            <p>Western classical, jazz, and especially hip-hop. Some favorites: McKinley Dixon, Common, A Tribe Called Quest, J Dilla, Conway the Machine, and Stove God Cooks.</p>
+          </li>
+          <li>
+            <h3>Anime</h3>
+            <p>My all-time favorites include Steins Gate, Full Metal Alchemist: Brotherhood, Love is War, Samurai Champloo, and Code Geass. However, I like a wide range and am down to talk about any!</p>
+          </li>
+          <li>
+            <h3>How I work</h3>
+            <p>I often find myself taking leading roles in group projects. I like creating consistent structures for tasks and meetings, with frequent communication between members.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <div>
+          <h2 id="contact-h">Contact</h2>
+          <p>I'm always happy to talk about AI, research, anime, hip-hop, basketball, economics, or anything interesting you may be working on!</p>
+          <a class="mail" href="mailto:adityadav372@gmail.com">adityadav372@gmail.com</a>
+        </div>
+        <p class="text-links"><a href="https://www.linkedin.com/in/aditya-dav/">LinkedIn</a><a href="https://github.com/Davadoba">GitHub</a><a href="resume.pdf">Resume (PDF)</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Aditya Davanam, 2026. Album and anime art belongs to the artists, studios and labels.</p>
+      <p>Last updated November 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
